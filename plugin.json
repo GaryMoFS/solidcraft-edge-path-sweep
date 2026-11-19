@@ -1,0 +1,192 @@
+{
+  "id": "edge-path-sweep",
+  "name": "Edge Path & Sweep",
+  "version": "0.2.0",
+  "description": "Create an open or closed 3D sketch path from selected edges and optionally sweep a sketch or built-in profile with rotation and offset.",
+  "capabilities": ["commands@0.1"],
+  "runtime": {
+    "module": "edge-path-sweep.wasm",
+    "commands": [
+      "document.inspect",
+      "select.set",
+      "selection.get",
+      "sketch.create",
+      "sketch.edit",
+      "sketch.inspect",
+      "sketch.copy",
+      "sketch.paste",
+      "sketch.transform",
+      "sketch.options",
+      "sketch.line3d",
+      "sketch.arc3d",
+      "sketch.circle.center",
+      "sketch.rectangle.center",
+      "sketch.finish",
+      "construct.plane.along_path",
+      "solid.sweep"
+    ],
+    "limits": {
+      "fuel": 50000000,
+      "memory_mib": 32,
+      "deadline_ms": 5000
+    },
+    "entries": [
+      {
+        "name": "edge-path-sweep",
+        "effect": "edit",
+        "slots": [
+          { "kind": "menu", "name": "Edge Path & Sweep..." },
+          { "kind": "ribbon", "name": "Edge Path" }
+        ],
+        "input_schema": {
+          "type": "object",
+          "required": ["edges"],
+          "x-solidcraft-order": [
+            "edges",
+            "path_mode",
+            "create_sweep_plane",
+            "finish_sketch",
+            "sketch_name",
+            "profile",
+            "profile_shape",
+            "profile_width",
+            "profile_height",
+            "profile_sketch",
+            "offset_x",
+            "offset_y",
+            "profile_angle_deg",
+            "orientation",
+            "twist_deg",
+            "end_scale",
+            "sweep_operation"
+          ],
+          "properties": {
+            "edges": {
+              "type": "array",
+              "title": "Edges",
+              "description": "Pick one or more body edges in the viewport (chained automatically).",
+              "minItems": 1,
+              "items": { "type": "object" },
+              "x-solidcraft-selection": { "version": 1, "accept": ["edge"] }
+            },
+            "path_mode": {
+              "type": "string",
+              "title": "Path Mode",
+              "oneOf": [
+                { "const": "open", "title": "Open" },
+                { "const": "closed", "title": "Closed Loop" }
+              ],
+              "default": "open"
+            },
+            "create_sweep_plane": {
+              "type": "boolean",
+              "title": "Create Sweep Plane at Start",
+              "default": true
+            },
+            "finish_sketch": {
+              "type": "boolean",
+              "title": "Finish Path Sketch",
+              "default": true
+            },
+            "sketch_name": {
+              "type": "string",
+              "title": "Path Sketch Name",
+              "default": "Edge Path"
+            },
+            "profile": {
+              "type": "array",
+              "title": "Sweep Profile (optional)",
+              "description": "Pick a sketch profile in the viewport (or click a Sketch in the Browser) to sweep along the path. Leave empty to create the 3D path only.",
+              "items": { "type": "object" },
+              "x-solidcraft-selection": { "version": 1, "accept": ["profile"] }
+            },
+            "profile_shape": {
+              "type": "string",
+              "title": "Built-in Profile",
+              "description": "Quick profile shape used when no sketch profile is picked.",
+              "oneOf": [
+                { "const": "none", "title": "None (Path Only / Use Picked Profile)" },
+                { "const": "circle", "title": "Circle" },
+                { "const": "rectangle", "title": "Rectangle" }
+              ],
+              "default": "none"
+            },
+            "profile_width": {
+              "type": "number",
+              "title": "Built-in Diameter / Width",
+              "unit": "mm",
+              "exclusiveMinimum": 0,
+              "default": 5.0
+            },
+            "profile_height": {
+              "type": "number",
+              "title": "Built-in Rect Height",
+              "unit": "mm",
+              "exclusiveMinimum": 0,
+              "default": 5.0
+            },
+            "profile_sketch": {
+              "type": "string",
+              "title": "Profile Sketch Name (fallback)",
+              "description": "Optional sketch name or ID when the profile sketch is not picked above.",
+              "default": ""
+            },
+            "offset_x": {
+              "type": "number",
+              "title": "Profile Offset X",
+              "unit": "mm",
+              "default": 0.0
+            },
+            "offset_y": {
+              "type": "number",
+              "title": "Profile Offset Y",
+              "unit": "mm",
+              "default": 0.0
+            },
+            "profile_angle_deg": {
+              "type": "number",
+              "title": "Profile Rotation",
+              "unit": "deg",
+              "default": 0.0
+            },
+            "orientation": {
+              "type": "string",
+              "title": "Sweep Orientation",
+              "oneOf": [
+                { "const": "perpendicular", "title": "Turn with Path" },
+                { "const": "parallel", "title": "Keep as Drawn" }
+              ],
+              "default": "perpendicular"
+            },
+            "twist_deg": {
+              "type": "number",
+              "title": "Path Twist",
+              "unit": "deg",
+              "minimum": -1440,
+              "maximum": 1440,
+              "default": 0.0
+            },
+            "end_scale": {
+              "type": "number",
+              "title": "End Scale",
+              "minimum": 0.01,
+              "maximum": 100,
+              "default": 1.0
+            },
+            "sweep_operation": {
+              "type": "string",
+              "title": "Sweep Operation",
+              "oneOf": [
+                { "const": "new_body", "title": "New Body" },
+                { "const": "join", "title": "Join" },
+                { "const": "cut", "title": "Cut" },
+                { "const": "intersect", "title": "Intersect" }
+              ],
+              "default": "new_body"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
