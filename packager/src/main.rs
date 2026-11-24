@@ -96,7 +96,7 @@ mod tests {
     }
 
     #[test]
-    fn real_solidcraft_r44_path_only_open_closed_and_out_of_order_chaining() {
+    fn real_solidcraft_r47_path_only_open_closed_and_out_of_order_chaining() {
         let mut session = Session::default();
         let (pkg_dir, approval) = dist_and_approval(&mut session);
 
@@ -190,7 +190,7 @@ mod tests {
     }
 
     #[test]
-    fn real_solidcraft_r44_cylinder_rim_arc_orientation() {
+    fn real_solidcraft_r47_cylinder_rim_arc_orientation() {
         let mut session = Session::default();
         let (pkg_dir, approval) = dist_and_approval(&mut session);
 
@@ -256,7 +256,7 @@ mod tests {
     }
 
     #[test]
-    fn real_solidcraft_r44_unified_sweep_picked_profile_builtin_and_repeated_runs() {
+    fn real_solidcraft_r47_unified_sweep_picked_profile_builtin_and_repeated_runs() {
         let mut session = Session::default();
         let (pkg_dir, approval) = dist_and_approval(&mut session);
 

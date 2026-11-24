@@ -1,6 +1,6 @@
 # Edge Path & Sweep (`edge-path-sweep`)
 
-A WebAssembly (`craft:plugin@0.1.0` / `commands@0.1`) plugin for **SolidCraft (v0.44+)** that builds an open or closed 3D sketch path from picked body edges and optionally sweeps a picked sketch profile or built-in shape along that path.
+A WebAssembly (`craft:plugin@0.2.0` / `commands@0.2`) plugin for **SolidCraft (v0.47+)** (use v0.2.0 for SolidCraft 0.44-0.46) that builds an open or closed 3D sketch path from picked body edges and optionally sweeps a picked sketch profile or built-in shape along that path.
 
 ## Features
 
@@ -22,7 +22,7 @@ cd plugin && cargo build --release
 cd ../packager && cargo run --release
 ```
 
-Run the packager integration tests (uses `SolidCraft-r44-trial` crates in `[dev-dependencies]`):
+Run the packager integration tests (uses `SolidCraft-r47-trial` crates in `[dev-dependencies]`):
 
 ```sh
 cd packager && cargo test --release -- --nocapture

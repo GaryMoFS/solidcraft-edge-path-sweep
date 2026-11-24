@@ -1,9 +1,9 @@
 {
   "id": "edge-path-sweep",
   "name": "Edge Path & Sweep",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Create an open or closed 3D sketch path from selected edges and optionally sweep a sketch or built-in profile with rotation and offset.",
-  "capabilities": ["commands@0.1"],
+  "capabilities": ["commands@0.2"],
   "runtime": {
     "module": "edge-path-sweep.wasm",
     "commands": [

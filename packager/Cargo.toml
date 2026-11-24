@@ -10,7 +10,7 @@ wit-parser = "0.244"
 zip = { version = "2", default-features = false, features = ["deflate"] }
 
 [dev-dependencies]
-craft-plugin = { path = "../../SolidCraft-r44-trial/crates/craft-plugin" }
-craft-plugin-wasm = { path = "../../SolidCraft-r44-trial/crates/craft-plugin-wasm" }
+craft-plugin = { path = "../../SolidCraft-r47-trial/crates/craft-plugin" }
+craft-plugin-wasm = { path = "../../SolidCraft-r47-trial/crates/craft-plugin-wasm" }
 serde_json = "1"
-solidcraft-engine = { path = "../../SolidCraft-r44-trial/crates/engine" }
+solidcraft-engine = { path = "../../SolidCraft-r47-trial/crates/engine" }
